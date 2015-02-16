@@ -1,0 +1,17 @@
+# coding: utf-8
+get_ipython().magic(u'pylab')
+N=128
+X=np.arange(0, 2*pi, 2*pi/N)
+Y=cos(X) + cos(2*X) + sin(3*X)
+W=np.fft.fft(Y)
+W2=np.fft.fft(W)
+subplot(3,1,1)
+title("signal")
+subplots_adjust(hspace=0.5)
+plot(Y)
+subplot(3,1,2)
+title("fft real part")
+plot(W)
+subplot(3,1,3)
+title("fft real part fft")
+plot(W2)
