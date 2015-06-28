@@ -24,3 +24,16 @@ h = (1-lbd)*pow(lbd,np.arange(100)) # constructs the impulse response of the sys
 
 jingle_conv = np.convolve(jingle_noisy, h, 'valid')
 wavfile.write('jingle-denoised.wav', 44100, jingle_conv)
+
+M = 10
+lbd = float(M-1)/M
+h = (1-lbd) * pow(lbd, arange(100))
+
+L = len(h)
+N_J = jingle_len
+
+from scipy import fftpack as f
+JingleNoisy = f.fft(jingle_noisy, N_J-L+1)
+H = f.fft(h,N_J-L+1)
+
+normFreqJ = np.arange(N_J-L+1, dtype=float)/N_J-L+1
